@@ -1,0 +1,33 @@
+For this project you need:
+ - 2 X ADXL345 sensors
+ - 1 X I2C OLED Display
+ - 2 X Breadbord
+ - 1 X Arduino Due
+ - ? X Button
+   ( You need at least one button to swap between the sensor data and PONG)
+   ( You need 2 more to put the first sensor in standby mode and back in measure mode)
+   ( You can use 2 more for the second sensor but you'd have to also add additional code to main.cpp to make that work)
+ - 2 X 1 k resistors for the i2c buss
+ - ? X 10 k resistors for the buttons
+   ( One for each button )
+ - And of course a whole bunch of male to male and female to male cables
+
+Building the project:
+ - The two sensors and the OLED display operate on 3.3v
+ - The way the project works requires that the display and the sensors are all connected on the same i2c bus
+ - For that bus use pin 20 and 21 on the arduino due and have 1 k resistors as pull ups since those pins are open collectors
+ - For the sensor its important to wire it up correctly since that decides how it operates
+ - GND goes to ground
+ - VCC goes to 3.3v
+ - CS goes to 3.3(This puts the sensor in i2c mode. If you ground this pin its in SPI mode which means it won't work with the code)
+ - SDA goes to SDA
+ - SCL goes to SCL
+ - SDO goes to ground on sensor 1 and goes to 3.3v on sensor 2( This pin decides wether or not the device uses the primary or secundary address. For this project sensor one uses the secondary address which is ground and sensor 2 uses the primary address which is 3.3v)
+ - The mandatory button goes to pin D26 and is used to switch from reading the data to PONG
+ - The sensor buttons go to D22 and D24 these are used to swap the sensor from standby mode to measure mode and back.
+
+The display is pretty selfexplanetory
+ - GND to ground
+ - VCC to 3.3
+ - SDA to SDA
+ - SCL to SCL
